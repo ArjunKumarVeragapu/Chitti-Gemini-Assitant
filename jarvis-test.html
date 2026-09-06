@@ -22,7 +22,7 @@ space:pre-wrap;color:#fff}
 <textarea id="prompt" rows="4">Hello J.A.R.V.I.S</textarea>
 <button onclick="ask()">SEND REQUEST</button>
 <div id="reply">Waiting for response...</div>
-<script>
+<script type="module">
 // ⚠️ PASTE YOUR API KEY BELOW (Inside the quotes)
 const API_KEY = "_________________";
 async function ask(){
@@ -53,6 +53,23 @@ JSON.stringify(data);
   }catch(e){document.getElementById("reply").innerText = "NETWORK ERROR: " + e.message;
     document.getElementById("status").innerText = "CONNECTION FAILED";
   }
+  import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
+
+const container = document.getElementById('avatar-container');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+
+renderer.setSize(container.clientWidth, container.clientHeight);
+container.appendChild(renderer.domElement);
+
+camera.position.z = 5;
+
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+animate();
 }
 </script>
 </body>
